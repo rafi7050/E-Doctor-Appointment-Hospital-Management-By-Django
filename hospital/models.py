@@ -76,5 +76,16 @@ class PatientDischargeDetails(models.Model):
     OtherCharge=models.PositiveIntegerField(null=False)
     total=models.PositiveIntegerField(null=False)
 
+class Patient_presscription(models.Model):
+    patientId=models.PositiveIntegerField(null=False)
+    patientName=models.CharField(max_length=40)
+    assignedDoctorName=models.CharField(max_length=40)
+    address = models.CharField(max_length=40)
+    mobile = models.CharField(max_length=40,null=True)
+    symptoms = models.CharField(max_length=100,null=True)
+    presscription = models.TextField(max_length=100,null=True, blank=True)
+    presscription1 = models.TextField(max_length=100,null=True, blank=True)
 
+
+    
 

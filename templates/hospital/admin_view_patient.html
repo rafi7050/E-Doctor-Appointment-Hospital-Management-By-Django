@@ -21,10 +21,7 @@
     }
   </style>
 </head>
-<!--
-written By : sumit kumar
-facebook : fb.com/sumit.luv
--->
+
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
@@ -40,6 +37,7 @@ facebook : fb.com/sumit.luv
           <th>Address</th>
           <th>Update</th>
           <th>Delete</th>
+          <th>Presscription</th>
         </tr>
       </thead>
       {% for p in patients %}
@@ -51,15 +49,12 @@ facebook : fb.com/sumit.luv
         <td>{{p.address}}</td>
         <td><a class="btn btn-primary btn-xs" href="{% url 'update-patient' p.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td>
         <td><a class="btn btn-danger btn-xs" href="{% url 'delete-patient-from-hospital' p.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+        <td>{{p.address}}</td>
       </tr>
       {% endfor %}
     </table>
   </div>
 </div>
-<!--
-developed By : sumit kumar
-facebook : fb.com/sumit.luv
-youtube : youtube.com/lazycoders
--->
+
 
 {% endblock content %}

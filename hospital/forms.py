@@ -56,5 +56,3 @@ class ContactusForm(forms.Form):
     Message = forms.CharField(max_length=500,widget=forms.Textarea(attrs={'rows': 3, 'cols': 30}))
 
 
-
-

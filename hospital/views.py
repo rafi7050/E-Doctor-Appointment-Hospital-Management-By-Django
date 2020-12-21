@@ -804,6 +804,59 @@ def contactus_view(request):
 #---------------------------------------------------------------------------------
 #------------------------ ADMIN RELATED VIEWS END ------------------------------
 #---------------------------------------------------------------------------------
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_press_patient_view(request):
+    patients=models.Patient.objects.all().filter(status=True)
+    return render(request,'hospital/admin_press_patient.html',{'patients':patients})
+
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def press_patient_view(request,pk):
+    patient=models.Patient.objects.get(id=pk)
+   
+    assignedDoctor=models.User.objects.all().filter(id=patient.assignedDoctorId)
+    
+    patientDict={
+        'patientId':pk,
+        'name':patient.get_name,
+        'mobile':patient.mobile,
+        'address':patient.address,
+        'symptoms':patient.symptoms,
+ 
+        'assignedDoctorName':assignedDoctor[0].first_name,
+    }
+    if request.method == 'POST':
+        feeDict ={
+            
+            'presscription':request.POST['presscription'],
+            'presscription1' : request.POST['presscription1']
+        }
+        patientDict.update(feeDict)
+        #for updating to database patientDischargeDetails (pDD)
+        pDD=models.Patient_presscription()
+        pDD.patientId=pk
+        pDD.patientName=patient.get_name
+        pDD.assignedDoctorName=assignedDoctor[0].first_name
+        pDD.address=patient.address
+        pDD.mobile=patient.mobile
+        pDD.symptoms=patient.symptoms
+       
+        pDD.presscription=request.POST['presscription']
+        pDD.presscription1=request.POST['presscription1']
+       
+        pDD.save()
+        
+      
+        
+       
+   
+
+        return render(request,'hospital/patient_final_press.html',context=patientDict)
+    return render(request,'hospital/patient_generate_press.html',context=patientDict)
+   
 
 
 

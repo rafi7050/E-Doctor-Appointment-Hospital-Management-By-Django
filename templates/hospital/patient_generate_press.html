@@ -1,23 +1,12 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+{% extends 'hospital/admin_base.html' %}
+{% load static %}
+{% block content %}
 
 <head>
   <meta charset="utf-8">
+  <title>E-Doctor</title>
+
   <style>
-    @page {
-      size: A4;
-      margin: 1cm;
-
-      @frame footer {
-        -pdf-frame-content: footerContent;
-        bottom: 0cm;
-        margin-left: 9cm;
-        margin-right: 9cm;
-        height: 1cm;
-      }
-    }
-
     .invoice-box {
       max-width: 800px;
       margin: auto;
@@ -109,91 +98,118 @@
     .rtl table tr td:nth-child(2) {
       text-align: left;
     }
+
+    .menu {
+      top: 50px;
+    }
+    .pt {
+    width: 188%;
+    height: 156px;
+}
   </style>
 </head>
 
-<body>
+<br><br><br>
+<div class="invoice-box">
+  <table cellpadding="0" cellspacing="0">
+    <tr class="top">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td class="title">
+              <img src="http://www.dochub24.com/static/images/DOC_HUB___LOGO-removebg-preview.png" alt="" width="120" height="50">
+            </td>
 
-  <br><br><br>
-  <div class="invoice-box">
-    <table cellpadding="0" cellspacing="0">
-      <tr class="top">
-        <td colspan="2">
-          <table>
-            <tr>
-              <td class="title">
-                <h5>E-Doctor</h5>
-              </td>
+            <td>
 
-              <td>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
 
-                Admit Date: {{admitDate}}<br>
-                Release Date: {{releaseDate}}<br>
-                Days Spent: {{daySpent}}
-              </td>
-            </tr>
-          </table>
+    <tr class="information">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td>
+              Patient Name : {{name}}<br>
+              Patient Mobile : {{mobile}}<br>
+              Patient Addres : {{address}}<br>
+            </td>
+
+            <td>
+              Doctor Name :
+              {{assignedDoctorName}}<br>
+
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr class="heading">
+      <td>
+        Disease and Symptoms
+      </td>
+      <td>
+
+      </td>
+
+    </tr>
+
+    <tr class="details">
+      <td>
+        {{symptoms}}
+      </td>
+    </tr>
+    <tr class="heading">
+      <td>
+        Rx:
+      </td>
+
+      <td>
+       
+      </td>
+    </tr>
+    <form method="post">
+      {% csrf_token %}
+
+      <tr class="item">
+        <td>
+         Presscription
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" class="pt"  name="presscription" placeholder="" value="">
+        </td>
+      </tr>
+      <tr class="item">
+        <td>
+         Presscription
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="textfield" class="pt" name="presscription1" placeholder="" value="">
         </td>
       </tr>
 
-      <tr class="information">
-        <td colspan="2">
-          <table>
-            <tr>
-              <td>
-                Patient Name : {{patientName}}<br>
-                Patient Mobile : {{mobile}}<br>
-                Patient Addres : {{address}}<br>
-              </td>
+ 
 
-              <td>
-                Doctor Name :<br>
-                {{assignedDoctorName}}<br>
+      <tr class="total">
+        <td></td>
 
-              </td>
-            </tr>
-          </table>
+        <td>
+          <input type="submit" name="submit" value="Generate Presscription">
         </td>
       </tr>
 
-
-      <tr class="information">
-        <td colspan="2">
-          <table>
-            <tr>
-              <td>
-                Disease and Symptoms :<br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp {{symptoms}}
-              </td>
-
-            </tr>
-          </table>
-        </td>
-      </tr>
+    </form>
+  </table>
+</div>
 
 
 
-      <tr class="information">
-        <td colspan="2">
-          <table>
-            <tr>
-              <td>
-                Charges :<br><br>
-                Room Charge of {{daySpent}} Days : {{roomCharge}}<br>
-                Doctor Fee : {{doctorFee}}<br>
-                Medicine Cost : {{medicineCost}}<br>
-                Other Charge : {{OtherCharge}} <br><br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp Total TAKA : {{total}}
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-
-
-    </table>
-  </div>
-</body>
-
-
-</html>
+{% endblock content %}

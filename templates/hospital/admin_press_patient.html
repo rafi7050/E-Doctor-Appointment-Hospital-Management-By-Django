@@ -5,7 +5,6 @@
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
   <style media="screen">
     a:link {
       text-decoration: none;
@@ -24,25 +23,30 @@
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h6 class="panel-title">Department & Doctors</h6>
+      <h6 class="panel-title">Discharge Patient</h6>
     </div>
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
-          <th>Department</th>
-          <th>Doctor Name</th>
+          <th>Name</th>
+          <th>Symptoms</th>
           <th>Mobile</th>
+          <th>Presscription</th>
         </tr>
       </thead>
-      {% for d in doctors %}
+      {% for p in patients %}
       <tr>
-        <td>{{d.department}}</td>
-        <td> {{d.get_name}}</td>
-        <td>{{d.mobile}}</td>
+        <td> {{p.get_name}}</td>
+        <td>{{p.symptoms}}</td>
+        <td>{{p.mobile}}</td>
+        <td><a class="btn btn-primary btn-xs" href="{% url 'press-patient' p.id  %}"><span class="glyphicon glyphicon-log-out"></span></a></td>
       </tr>
       {% endfor %}
     </table>
   </div>
+
+
 </div>
+
 
 {% endblock content %}

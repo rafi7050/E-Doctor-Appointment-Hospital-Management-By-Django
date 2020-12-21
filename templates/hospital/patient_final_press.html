@@ -123,9 +123,7 @@
 
             <td>
 
-              Admit Date: {{admitDate}}<br>
-              Release Date: {{todayDate}}<br>
-              Days Spent: {{day}}
+        
             </td>
           </tr>
         </table>
@@ -143,7 +141,7 @@
             </td>
 
             <td>
-              Doctor Name :<br>
+              Doctor Name : 
               {{assignedDoctorName}}<br>
 
             </td>
@@ -169,67 +167,42 @@
     </tr>
     <tr class="heading">
       <td>
-        Item
+        Rx:
       </td>
 
       <td>
-        Price
+        
       </td>
     </tr>
 
     <tr class="item">
       <td>
-        Room Charge of {{day}} Days
-      </td>
-
-      <td>
-        {{roomCharge}}
+       Detail
       </td>
     </tr>
-
+    <tr>
+      <td>
+        {{presscription}}
+      </td>
+    </tr>
     <tr class="item">
       <td>
-        Doctor Fee
+       Detail
       </td>
-
+    </tr>
+<tr>
       <td>
-        {{doctorFee}}
+        {{presscription1}}
       </td>
     </tr>
 
-    <tr class="item">
-      <td>
-        Medicine Cost
-      </td>
-
-      <td>
-        {{medicineCost}}
-      </td>
-    </tr>
-
-    <tr class="item last">
-      <td>
-        Other Charge
-      </td>
-
-      <td>
-        {{OtherCharge}}
-      </td>
-    </tr>
-
-    <tr class="total">
-      <td></td>
-
-      <td>
-        Total : {{total}}
-      </td>
-    </tr>
+  
 
   </table>
 </div>
 <br><br>
 <div class="download">
-  <a style="background:red; width:500px;" href="{% url 'download-pdf' patientId  %}">Download</a>
+  <a style="background:red; width:500px;" href="">Download</a>
 </div>
 
 
